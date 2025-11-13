@@ -5,9 +5,9 @@ on:
     branches:
       - main
 
-env:        # 👈 Define environment variables here
+env:
   DOCKER_IMAGE: muralisocial123/aws-retail-app
-  DOCKER_TAG: v1.1.0
+  DOCKER_TAG: v1.4.0
 
 jobs:
   build-and-push:
@@ -32,3 +32,15 @@ jobs:
           context: .
           push: true
           tags: ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
+
+      - name: Install docker-compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose version
+
+      - name: Run docker-compose
+        run: |
+          docker-compose down || true
+          docker-compose pull
+          docker-compose up -d
