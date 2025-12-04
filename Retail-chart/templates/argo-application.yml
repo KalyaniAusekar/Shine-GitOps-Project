@@ -14,7 +14,7 @@ spec:
         userprofile:
           activeVersion: blue
   destination:
-    server: https://kalyani-test-cluster-dns-13nks49z.hcp.canadacentral.azmk8s.io
+    server: https://kalyani-test-cluster-dns-13nks49z.hcp.canadacentral.azmk8s.io:443
     namespace: retail
   syncPolicy:
     automated:
